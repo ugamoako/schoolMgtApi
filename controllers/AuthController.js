@@ -39,10 +39,10 @@ exports.register = function (req, res, next) {
   const otherName = req.body.otherName;
   const lastName = req.body.lastName;
   const password = req.body.password;
-
+console.log('user id', userId);
   // Return error if no email provided
   if (!userId) {
-    return res.status(422).send({ error: 'You must enter an email address.' });
+    return res.status(422).send({ error: 'You must enter a valid userId.' });
   }
 
   // Return error if full name not provided

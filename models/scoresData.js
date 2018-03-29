@@ -2,17 +2,31 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var scoreDataSchema = new Schema({
-    studentID: {
-        type: string,
-        required:[true, 'Please insert student ID']
+    studentId: {
+        type: String,
+        required:[true, 'Please select student']
+    },
+    schoolId: {
+        type:String,
+        required:[true, 'school Id not found']
     },
     class: {
-        type: string,
-        required:[true, 'please enter surname']
+        type: Number,
+        required:[true, 'class not selected']
     },
-    subject: {type, string},
-    classScore: { type: number},
-    examScore: {type, number},
-    term:{type, number}
+    term:{
+        type: Number,
+        required:[true, 'term not selected']
+    },
+    year:{
+        type: Number,
+        required:[true, 'year not selected']
+    },
+    subject: {type: String},
+    classScore: { type: Number},
+    examScore: {type: Number},
+    
    
-})
+});
+
+module.exports = mongoose.model('scoreData', scoreDataSchema);

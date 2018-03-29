@@ -2,14 +2,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var termDataSchema = new Schema({
-    studentID: {
-        type: string,
-        required:[true, 'Please insert school ID']
+    studentId: {
+        type: String,
+        required:[true, 'Please insert student ID']
     },
-    termNum:{type: number,maxlength:1},
-    classTeacherRemarks: {type: string},
-    headMasterRemarks: {type, string},
-    Attendance: { type: string},
-    numberOnRoll: {type, number}
+    term:{type: Number,maxlength:1},
+    academicYr:{type: Number},
+    classTeacherRemarks: {type: String},
+    headMasterRemarks: {type: String},
+    attendance: { type: String},
+    numberOnRoll: {type: Number}
    
-})
+});
+
+module.exports = mongoose.model('termData', termDataSchema);

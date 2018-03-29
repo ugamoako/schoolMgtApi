@@ -1,10 +1,15 @@
+const express = require('express');
+const passport = require('passport');
 const AuthController = require('./controllers/AuthController');
 const UserController = require('./controllers/userController');
+const UserMetaController = require('./controllers/userMetaController');
+const SchoolDataController = require('./controllers/schoolDataController');
+const ScoreDataController = require('./controllers/scoresDataController');
+const TermDataController = require('./controllers/termDataController');
 //const ChatController = require('./controllers/chat');
 //const CommunicationController = require('./controllers/communication');
 //const StripeController = require('./controllers/stripe');
-const express = require('express');
-const passport = require('passport');
+
 const ROLE_MEMBER = require('./constants').ROLE_MEMBER;
 const ROLE_CLIENT = require('./constants').ROLE_CLIENT;
 const ROLE_OWNER = require('./constants').ROLE_OWNER;
@@ -18,9 +23,35 @@ const requireLogin = passport.authenticate('local', { session: false });
 router.get('/me', function(req,res){
     res.send('hello im here');
 })
-router.post('/login', requireLogin, AuthController.login);
-
 router.post('/register', AuthController.register);
+router.post('/login', requireLogin, AuthController.login);
+router.post('/userMeta', requireAuth, UserMetaController.postData);
+router.get('/getUserMeta', requireAuth, UserMetaController.getUserMetaAll);
+router.get('/getUserMeta/:userId', requireAuth, UserMetaController.getUserMeta);
+//router.delete('/getUserMeta/:id', requireAuth, UserMetaController.deleteUserMeta);
+router.put('/updateUserMeta/:id', requireAuth, UserMetaController.updateUserMeta);
+
+router.post('/postSchool', requireAuth, SchoolDataController.postSchoolData);
+router.get('/getSchool', requireAuth, SchoolDataController.getSchoolData);
+router.get('/getSchool/:userId', requireAuth, SchoolDataController.getSchoolData);
+//router.delete('/getSchoolData/:id', requireAuth, SchoolDataController.deleteSchoolData);
+router.put('/updateSchoolData/:id', requireAuth, SchoolDataController.updateSchoolData);
+
+router.post('/postScore', requireAuth, ScoreDataController.postScore);
+//router.get('/getScoreData', requireAuth, ScoreDataController.getScoreDataAll);
+router.get('/getScore/:studentId', requireAuth, ScoreDataController.getScoreI);
+router.get('/getScore/:studentId/:class/:term', requireAuth, ScoreDataController.getScoreICT);
+router.get('/getScore/:schoolId/:year/:class/:term', requireAuth, ScoreDataController.getScoreSYCT);
+router.get('/getScore/:schoolId/:year/:class/:term/:subject', requireAuth, ScoreDataController.getScoreSYCTS);
+//router.delete('/getScoreData/:id', requireAuth, ScoreDataController.deleteScoreData);
+router.put('/updateScore/:id', requireAuth, ScoreDataController.updateScoreData);
+
+router.post('/termData', requireAuth, TermDataController.postTermData);
+router.get('/getTermData', requireAuth, TermDataController.getTermData);
+router.get('/getTermData:userId', requireAuth, TermDataController.getTermData);
+//router.delete('/getTermData/:id', requireAuth, UserMetaController.deleteUserMeta);
+router.put('/updateTermData/:id', requireAuth, TermDataController.updateTermData);
+/**/
 /*module.exports = function (app) {
   // Initializing route groups
   const apiRoutes = express.Router(),
