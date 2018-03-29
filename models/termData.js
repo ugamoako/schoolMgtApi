@@ -7,8 +7,11 @@ var termDataSchema = new Schema({
         required:[true, 'Please insert student ID']
     },
     term:{type: Number,maxlength:1},
-    academicYr:{type: Number},
-    classTeacherRemarks: {type: String},
+    year:{type: Number},
+    dateVacated: Date,
+    termBegins: Date,
+    classTeacherRemarks: String,
+    houseMasterRemarks: String,
     headMasterRemarks: {type: String},
     attendance: { type: String},
     numberOnRoll: {type: Number}
