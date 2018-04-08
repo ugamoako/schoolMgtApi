@@ -51,7 +51,7 @@ exports.getUserMetaAll = function (req, res, next) {
 exports.getUserMeta = function (req, res, next) {
     let userId = req.params.userId;
     console.log('user Id ',req.params.userId);
-    userMeta.find({'userId':userId}, function (err, user) {
+    userMeta.findOne({'userId':userId}, function (err, user) {
         if (err) return res.status(500).send(err);
         if (!user) return res.status(404).send("No user found.");
         res.status(200).send(user);

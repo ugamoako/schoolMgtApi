@@ -42,11 +42,11 @@ exports.getSchoolDataAll = function (req, res, next) {
 
 // GETS A SINGLE USER FROM THE DATABASE
 exports.getSchoolData = function (req, res, next) {
-    let userId = req.params.userId;
-    console.log('user Id ',req.params.userId);
-    schoolData.find({'userId':userId}, function (err, user) {
+    let schoolId = req.params.userId;
+    console.log('school Id ',req.params.userId);
+    schoolData.findOne({'schoolId':schoolId}, function (err, user) {
         if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send("No user found.");
+        if (!user) return res.status(404).send("No school found.");
         res.status(200).send(user);
     });
 };
