@@ -12,10 +12,15 @@ exports.postData = function (req, res, next) {
     //res.send('hello it works');
     userMeta.create({
             userId : req.body.userId,
+            gender: req.body.gender,
+            status: req.body.status,
+            house: req.body.house,
             class : req.body.class,
+            classMeta:req.body.classMeta,
             program : req.body.program,
             DOB: req.body.DOB,
-            schoolId: req.body.schoolId
+            schoolId: req.body.schoolId,
+            image: req.body.image
         },
         function (err, userMeta) {
             if (err) return res.status(500).send(err);

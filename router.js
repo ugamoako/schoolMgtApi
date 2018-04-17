@@ -25,6 +25,7 @@ router.get('/me', function(req,res){
 })
 router.post('/register', AuthController.register);
 router.post('/login', requireLogin, AuthController.login);
+//router.get('/getAllUser', requireAuth, UserController.getAllUser);
 router.post('/userMeta', requireAuth, UserMetaController.postData);
 router.get('/getUserMeta', requireAuth, UserMetaController.getUserMetaAll);
 router.get('/getUserMeta/:userId', requireAuth, UserMetaController.getUserMeta);

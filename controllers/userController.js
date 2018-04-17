@@ -19,3 +19,11 @@ exports.viewProfile = function (req, res, next) {
     return res.status(200).json({ user: userToReturn });
   });
 };
+// RETURNS ALL THE USERS IN THE DATABASE
+exports.getAllUser = function (req, res, next) {
+  //router.get('/', function (req, res) {
+      User.find({}, function (err, allUser) {
+          if (err) return res.status(500).send("There was a problem finding the users.");
+          res.status(200).send(allUser);
+      });
+  };
