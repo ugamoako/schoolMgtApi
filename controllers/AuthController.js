@@ -83,7 +83,7 @@ console.log('user id', userId);
       const userInfo = setUserInfo(user);
 
       res.status(201).json({
-        token: `JWT ${generateToken(userInfo)}`,
+        token: `${generateToken(userInfo)}`,
         user: userInfo
       });
     });
